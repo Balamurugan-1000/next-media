@@ -1,21 +1,25 @@
 import { z } from "zod";
 
-const reqStr = z.string().trim().min(1, "Required");
+const requiredString = z.string().trim().min(1, "Required");
 
 export const signUpSchema = z.object({
-  email: reqStr.email("Invalid email Address"),
-  username: reqStr.regex(
+  email: requiredString.email("Invalid email Address"),
+  username: requiredString.regex(
     /^[a-zA-Z0-9_-]+$/,
     "Only letters , Numbers , - and _ are alloweded",
   ),
-  password: reqStr.min(8, "Must be atleast 8 characters"),
+  password: requiredString.min(8, "Must be atleast 8 characters"),
 });
 
 export type SignUpValues = z.infer<typeof signUpSchema>;
 
 export const loginSchema = z.object({
-  username: reqStr,
-  password: reqStr,
+  username: requiredString,
+  password: requiredString,
 });
 
 export type LoginValues = z.infer<typeof loginSchema>;
+
+export const createPostSchema = z.object({
+  content: requiredString,
+});

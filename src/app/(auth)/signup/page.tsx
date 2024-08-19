@@ -20,7 +20,6 @@ const page = () => {
             </p>
           </div>
           <div className="space-y-5 p-2">
-            sign up from Here
             <SignupForm />
             <Link href={"/login"} className="block text-center hover:underline">
               Already have an account ? Login

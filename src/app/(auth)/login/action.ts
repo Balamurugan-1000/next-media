@@ -25,15 +25,14 @@ export async function login(
       },
     });
     if (!existingUser || !existingUser.passwordHash)
-      return { error: "Incorrect username or password is Wrong" };
+      return { error: "username or password is Wrong" };
     const validPassword = await verify(existingUser.passwordHash, password, {
       memoryCost: 19456,
       timeCost: 2,
       outputLen: 32,
       parallelism: 1,
     });
-    if (!validPassword)
-      return { error: "Incorrect username or password is Wrong" };
+    if (!validPassword) return { error: "username or password is Wrong" };
 
     const session = await lucia.createSession(existingUser.id, {});
     const sessionCookie = await lucia.createSessionCookie(session.id);

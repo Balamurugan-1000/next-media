@@ -48,7 +48,6 @@ export const validateRequest = cache(
         session: null,
       };
     }
-
     const result = await lucia.validateSession(sessionId);
 
     try {
