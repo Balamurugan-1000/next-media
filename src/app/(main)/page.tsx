@@ -1,25 +1,18 @@
 import PostEditor from "@/components/posts/editor/PostEditor";
+import Post from "@/components/posts/Post";
+import TrendsSidebar from "@/components/TrendsSidebar";
 import prisma from "@/lib/prisma";
+import { postDataInclude } from "@/lib/types";
 import React from "react";
+import ForYouFeed from "./ForYouFeed";
 
-const NewPage = async () => {
-  const posts = await prisma.post.findMany({
-    orderBy: { createdAt: "desc" },
-    include: {
-      user: {
-        select: {
-          username: true,
-          displayName: true,
-          avatarUrl: true,
-        },
-      },
-    },
-  });
+const NewPage = () => {
   return (
-    <div id="Ok" className="h-[200vh] w-full bg-blue-100">
-      <div className="w-full">
-        <PostEditor />
+    <div id="Ok" className="flex w-full min-w-0 gap-5">
+      <div className="w-full min-w-0 space-y-5">
+        <ForYouFeed />
       </div>
+      <TrendsSidebar />
     </div>
   );
 };
