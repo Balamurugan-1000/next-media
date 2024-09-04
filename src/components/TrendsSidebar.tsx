@@ -87,7 +87,6 @@ const getTrendingTopics = unstable_cache(
 
 const TrendingTopics = async () => {
   const trendingTopics = await getTrendingTopics();
-  console.log(trendingTopics);
   return (
     <div className="space-y-5 rounded-xl bg-card p-5 shadow-sm">
       <h1 className="text-xl font-bold">TrendingTopics</h1>

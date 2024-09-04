@@ -39,7 +39,7 @@ const UserButton = ({ classname }: UserButtonProps) => {
         <button
           className={cn(
             classname,
-            "user-select-none flex-none rounded-full border-none outline-none",
+            "user-select-none flex-none rounded-full border-none text-white outline-none",
           )}
         >
           {" "}
@@ -50,12 +50,12 @@ const UserButton = ({ classname }: UserButtonProps) => {
         <DropdownMenuLabel>Logged in as @{user.username}</DropdownMenuLabel>
         <DropdownMenuSeparator />
         <Link href={`/users/${user.username}`}>
-          <DropdownMenuItem>
+          <DropdownMenuItem className="">
             <UserIcon className="mr-2 size-4" /> Profile
           </DropdownMenuItem>
         </Link>
         <DropdownMenuSub>
-          <DropdownMenuSubTrigger>
+          <DropdownMenuSubTrigger className="">
             <Monitor className="mr-2 size-4" />
             Theme
           </DropdownMenuSubTrigger>
@@ -80,7 +80,7 @@ const UserButton = ({ classname }: UserButtonProps) => {
         <DropdownMenuSeparator />
         <DropdownMenuItem
           onClick={() => {
-            queryClient.clear()
+            queryClient.clear();
             logout();
           }}
         >

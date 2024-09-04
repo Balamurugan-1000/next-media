@@ -8,8 +8,11 @@ import UserAvatar from "@/components/UserAvatar";
 import { useSession } from "@/app/(main)/SessionProvider";
 import { Button } from "@/components/ui/button";
 import "./styles.css";
+import { useSubmitPostMutation } from "./mutation";
+import LoadingButton from "@/components/LoadingButton";
 const PostEditor = () => {
   const { user } = useSession();
+  const mutation = useSubmitPostMutation();
   const editor = useEditor({
     extensions: [
       StarterKit.configure({
@@ -29,9 +32,11 @@ const PostEditor = () => {
     }) || "";
 
   const onSubmitHandler = async () => {
-    console.log("Hi");
-    await submitPost(input);
-    editor?.commands.clearContent();
+    mutation.mutate(input, {
+      onSuccess: () => {
+        editor?.commands.clearContent();
+      },
+    });
   };
   return (
     <div className="flex flex-col gap-5 rounded-2xl bg-card p-5 shadow-sm">
@@ -39,17 +44,19 @@ const PostEditor = () => {
         <UserAvatar avatarurl={user.avatarUrl} classname="hidden sm:inline" />
         <EditorContent
           editor={editor}
+          onSubmit={onSubmitHandler}
           className="styled-scrollbar max-h-[20rem] w-full overflow-y-auto rounded-2xl bg-background px-5 py-3"
         />
       </div>
       <div className="flex justify-end">
-        <Button
+        <LoadingButton
+          loading={mutation.isPending}
           onClick={onSubmitHandler}
           disabled={!input}
           className="min-w-20"
         >
           Post
-        </Button>
+        </LoadingButton>
       </div>
     </div>
   );

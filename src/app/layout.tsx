@@ -38,8 +38,8 @@ export default function RootLayout({
             disableTransitionOnChange
           >
             {children}
+            <Toaster />
           </ThemeProvider>
-          <Toaster />
         </ReactQueryProvider>
       </body>
     </html>
