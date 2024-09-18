@@ -8,20 +8,19 @@ import {
   DropdownMenuItem,
 } from "../ui/dropdown-menu";
 import { Button } from "../ui/button";
-import { MoreHorizontal, Trash, Trash2 } from "lucide-react";
-import { DropdownMenuCheckboxItem } from "@radix-ui/react-dropdown-menu";
+import { MoreHorizontal, Trash2 } from "lucide-react";
 
 interface PostMoreButtonProps {
   post: PostData;
-  classname?: string;
+  className?: string;
 }
-const PostMoreButton = ({ post, classname }: PostMoreButtonProps) => {
+const PostMoreButton = ({ post, className }: PostMoreButtonProps) => {
   const [showDeleteDialog, setShowDeleteDialog] = useState(false);
   return (
     <>
       <DropdownMenu>
-        <DropdownMenuTrigger>
-          <Button size={"icon"} variant={"ghost"} className={classname}>
+        <DropdownMenuTrigger asChild>
+          <Button size={"icon"} variant={"ghost"} className={className}>
             <MoreHorizontal className="size-5 text-muted-foreground" />
           </Button>
         </DropdownMenuTrigger>

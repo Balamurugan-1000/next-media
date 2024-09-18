@@ -15,8 +15,7 @@
     --popover: 0 0% 100%;
     --popover-foreground: 240 10% 3.9%;
 
-    --primary: 265 60% 50%; /* Vibrant violet */
-
+    --primary: 142.1 76.2% 36.3%;
     --primary-foreground: 355.7 100% 97.3%;
 
     --secondary: 240 4.8% 95.9%;
@@ -39,33 +38,33 @@
   }
 
   .dark {
-    --background: 240 6% 8%; /* Darker greyish-blue background for depth */
-    --foreground: 0 0% 85%; /* Slightly dimmed white for readability */
+    --background: 20 14.3% 4.1%;
+    --foreground: 0 0% 95%;
 
-    --card: 240 5% 15%; /* Darker greyish-blue */
-    --card-foreground: 0 0% 80%; /* More dimmed off-white for better readability */
+    --card: 24 9.8% 10%;
+    --card-foreground: 0 0% 95%;
 
-    --popover: 240 5% 10%; /* Darker than before for better contrast */
-    --popover-foreground: 0 0% 85%; /* Dimmed white for good contrast */
+    --popover: 0 0% 9%;
+    --popover-foreground: 0 0% 95%;
 
-    --primary: 265 60% 50%; /* Vibrant violet */
-    --primary-foreground: 265 100% 90%; /* Light lavender for readability */
+    --primary: 142.1 70.6% 45.3%;
+    --primary-foreground: 144.9 80.4% 10%;
 
-    --secondary: 240 4% 18%; /* Darker muted grey-blue */
-    --secondary-foreground: 0 0% 85%; /* Dimmed white for contrast */
+    --secondary: 240 3.7% 15.9%;
+    --secondary-foreground: 0 0% 98%;
 
-    --muted: 240 4% 16%; /* Dark muted grey, slightly darker */
-    --muted-foreground: 240 10% 65%; /* Desaturated blue for a muted text effect */
+    --muted: 0 0% 15%;
+    --muted-foreground: 240 5% 64.9%;
 
-    --accent: 240 4% 18%; /* Darker muted blue for emphasis */
-    --accent-foreground: 0 0% 90%; /* Softer white for readability on accents */
+    --accent: 12 6.5% 15.1%;
+    --accent-foreground: 0 0% 98%;
 
-    --destructive: 0 50% 40%; /* Darker red for destructive elements */
-    --destructive-foreground: 0 85.7% 97.3%; /* Bright white for visibility */
+    --destructive: 0 62.8% 50%;
+    --destructive-foreground: 0 85.7% 97.3%;
 
-    --border: 240 4% 18%; /* Darker grey for subtle borders */
-    --input: 240 4% 16%; /* Darker shade for input fields */
-    --ring: 265 60% 50%; /* Vibrant violet ring to match primary color */
+    --border: 240 3.7% 15.9%;
+    --input: 240 3.7% 15.9%;
+    --ring: 142.4 71.8% 29.2%;
   }
 }
 

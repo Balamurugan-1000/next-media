@@ -11,7 +11,7 @@ const MenuBar = ({ classname }: MenuBarProps) => {
     <div className={classname}>
       <Button
         variant={"ghost"}
-        className="flex items-center justify-start gap-3"
+        className="flex items-center justify-start gap-3 hover:text-primary"
         title="Home"
         asChild
       >
@@ -22,7 +22,7 @@ const MenuBar = ({ classname }: MenuBarProps) => {
       </Button>
       <Button
         variant={"ghost"}
-        className="flex items-center justify-start gap-3"
+        className="flex items-center justify-start gap-3 hover:text-primary"
         title="Notifications"
         asChild
       >
@@ -33,7 +33,7 @@ const MenuBar = ({ classname }: MenuBarProps) => {
       </Button>
       <Button
         variant={"ghost"}
-        className="flex items-center justify-start gap-3"
+        className="flex items-center justify-start gap-3 hover:text-primary"
         title="Messages"
         asChild
       >
@@ -44,11 +44,11 @@ const MenuBar = ({ classname }: MenuBarProps) => {
       </Button>
       <Button
         variant={"ghost"}
-        className="flex items-center justify-start gap-3"
+        className="flex items-center justify-start gap-3 hover:text-primary"
         title="Bookmarks"
         asChild
       >
-        <Link href={"/bookmarks"}>
+        <Link href={"/bookmarks"} className="hover:text-primary">
           <Bookmark />
           <span className="hidden lg:inline">Bookmarks</span>
         </Link>

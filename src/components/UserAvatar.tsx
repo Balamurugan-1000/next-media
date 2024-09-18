@@ -1,27 +1,28 @@
+import avatarPlaceholder from "@/assets/avatar-placeholder.png";
+import { cn } from "@/lib/utils";
+import Image from "next/image";
+
 interface UserAvatarProps {
   avatarurl: string | null | undefined;
   size?: number;
-  classname?: string;
+  className?: string;
 }
-import avatarPlaceholder from "@/assets/avatar-placeholder.png";
-import { cn } from "@/lib/utils";
 
-import Image from "next/image";
-import React from "react";
-
-const UserAvatar = ({ avatarurl, classname, size }: UserAvatarProps) => {
+export default function UserAvatar({
+  avatarurl,
+  size,
+  className,
+}: UserAvatarProps) {
   return (
     <Image
       src={avatarurl || avatarPlaceholder}
       alt="User avatar"
-      width={size || 48}
-      height={size || 48}
+      width={size ?? 48}
+      height={size ?? 48}
       className={cn(
         "aspect-square h-fit flex-none rounded-full bg-secondary object-cover",
-        classname,
+        className,
       )}
     />
   );
-};
-
-export default UserAvatar;
+}
