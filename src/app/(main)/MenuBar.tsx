@@ -57,7 +57,7 @@ const MenuBar = async ({ classname }: MenuBarProps) => {
       <Button
         variant={"ghost"}
         className="flex items-center justify-start gap-3 hover:text-primary"
-        title="Bookmarks"
+        title="Find people"
         asChild
       >
         <Link href={"/follow-suggestions"} className="hover:text-primary">

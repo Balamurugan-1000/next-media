@@ -80,7 +80,7 @@ function MenuHeader({ onClose }: MenuHeaderProps) {
 
   return (
     <>
-      <div className="flex items-center gap-3 p-2">
+      <div className="flex items-center gap-3 bg-background p-2">
         <div className="h-full md:hidden">
           <Button size="icon" variant="ghost" onClick={onClose}>
             <X className="size-5" />
