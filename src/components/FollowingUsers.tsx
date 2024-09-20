@@ -13,9 +13,9 @@ const FollowingUsers = () => {
     return <p className="text-center text-red-600">Failed to load users.</p>;
 
   return (
-    <div className="bg-gray-50 p-6 max-sm:text-xs">
+    <div className="rounded p-6 max-sm:text-xs">
       {data?.followingUsers.length === 0 ? (
-        <p className="text-center text-gray-500">No following users found.</p>
+        <p className="text-center text-card">No following users found.</p>
       ) : (
         <ul className="space-y-4">
           {data?.followingUsers.map((user) => (

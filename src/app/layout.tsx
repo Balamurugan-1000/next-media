@@ -9,6 +9,7 @@ import ReactQueryProvider from "./ReactQueryProvider";
 import { NextSSRPlugin } from "@uploadthing/react/next-ssr-plugin";
 import { extractRouterConfig } from "uploadthing/server";
 import { fileRouter } from "./api/uploadthing/core";
+
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
   variable: "--font-geist-sans",
@@ -24,6 +25,9 @@ export const metadata: Metadata = {
     default: "nextMedia",
   },
   description: "Social media to destroy your creativity and goals",
+  icons: {
+    icon: "/favicon.ico", // Add the favicon here
+  },
 };
 
 export default function RootLayout({

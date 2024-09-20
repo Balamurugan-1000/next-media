@@ -112,7 +112,7 @@ const UserProfile = async ({ loggedInUserId, user }: UserProfileProps) => {
               </span>
             </span>
             <FollowersCount initialState={followerInfo} userId={user.id} />
-            <FollowingCount />
+            {loggedInUserId === user.id && <FollowingCount />}
           </div>
         </div>
         {user.id === loggedInUserId ? (

@@ -43,7 +43,7 @@ const FollowSuggestions = forwardRef<unknown, FollowSuggestionsProps>(
       </p>
     );
     const renderSuggestions = () => (
-      <div className="space-y-5">
+      <div className="space-y-5 bg-background">
         {suggestions.map((user) => (
           <div key={user.id} className="w-full">
             <UserCard user={user} />

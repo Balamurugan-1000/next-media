@@ -3,6 +3,7 @@ import Image from "next/image";
 import { FollowerInfo, UserData } from "@/lib/types";
 import FollowButton from "./FollowButton";
 import { useSession } from "@/app/(main)/SessionProvider";
+import UserTooltip from "./UserTooltip";
 
 interface UserCardProps {
   user: UserData;
@@ -22,27 +23,37 @@ const UserCard = ({ user }: UserCardProps) => {
   };
 
   return (
-    <div className="flex w-full flex-col items-center justify-between rounded-md border border-gray-200 p-4 shadow-md transition-all duration-300 hover:bg-gray-100 hover:shadow-lg sm:flex-row">
+    <div className="flex w-full flex-col items-center justify-between rounded-md border border-primary-foreground bg-card p-4 shadow-md transition-all duration-300 hover:shadow-lg hover:shadow-card-foreground sm:flex-row">
       <div className="mb-4 flex items-center space-x-4 sm:mb-0">
         {user.avatarUrl ? (
-          <Image
-            src={user.avatarUrl}
-            alt={`${displayName}'s profile picture`}
-            width={48}
-            height={48}
-            className="rounded-full border border-gray-300 object-cover"
-          />
+          <UserTooltip user={user}>
+            <Image
+              src={user.avatarUrl}
+              alt={`${displayName}'s profile picture`}
+              width={48}
+              height={48}
+              className="rounded-full border border-card object-cover"
+            />
+          </UserTooltip>
         ) : (
-          <div className="flex h-12 w-12 items-center justify-center rounded-full bg-gray-300 text-lg font-semibold">
-            {String(displayName).charAt(0).toUpperCase()}
-          </div>
+          <UserTooltip user={user}>
+            <div className="flex h-12 w-12 items-center justify-center rounded-full bg-card-foreground text-lg font-semibold text-card">
+              {String(displayName).charAt(0).toUpperCase()}
+            </div>
+          </UserTooltip>
         )}
 
         <div>
-          <p className="text-lg font-bold text-gray-900 sm:text-xl">
-            {displayName}
-          </p>
-          <p className="text-sm text-gray-600 sm:text-base">@{user.username}</p>
+          <UserTooltip user={user}>
+            <p className="text-lg font-bold text-muted-foreground sm:text-xl">
+              {displayName}
+            </p>
+          </UserTooltip>
+          <UserTooltip user={user}>
+            <p className="text-sm text-muted-foreground sm:text-base">
+              @{user.username}
+            </p>
+          </UserTooltip>
         </div>
       </div>
 
