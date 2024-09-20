@@ -37,7 +37,6 @@ export const submitComment = async ({
       include: getCommentDataInclude(user.id),
     });
 
-    // Create notification for the post owner if the commenter is not the owner
     if (post.user.id !== user.id) {
       await prisma.notification.create({
         data: {
@@ -49,7 +48,6 @@ export const submitComment = async ({
       });
     }
 
-    // Create mention notifications for mentioned users
     if (userIds.length > 0) {
       await Promise.all(
         userIds.map(async (recipientId) => {

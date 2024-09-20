@@ -19,13 +19,13 @@ const Notification = ({ notification }: NotificationProps) => {
       icon: <User2 className="size-7 text-primary" />,
       href: `/users/${notification.issuer.username}`,
     },
-    LIKE: {
+    COMMENT: {
       message: `${notification.issuer.displayName} commented on your post`,
       icon: <MessageCircle className="size-7 text-primary" />,
       href: `/posts/${notification.postId}`,
     },
-    COMMENT: {
-      message: `${notification.issuer.displayName} liked your post`,
+    LIKE: {
+      message: `${notification.issuer.displayName} COMMENTd your post`,
       icon: <Heart className="size-7 fill-red-500 text-red-500" />,
       href: `/posts/${notification.postId}`,
     },
