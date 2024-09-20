@@ -15,6 +15,7 @@ import { cache } from "react";
 import UserPosts from "./UserPosts";
 import Linkify from "@/components/Linkify";
 import EditProfileButton from "./EditProfileButton";
+import FollowingCount from "@/components/FollowingCount";
 
 interface PageProps {
   params: { username: string };
@@ -111,6 +112,7 @@ const UserProfile = async ({ loggedInUserId, user }: UserProfileProps) => {
               </span>
             </span>
             <FollowersCount initialState={followerInfo} userId={user.id} />
+            <FollowingCount />
           </div>
         </div>
         {user.id === loggedInUserId ? (

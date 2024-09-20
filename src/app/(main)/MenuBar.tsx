@@ -1,11 +1,12 @@
 import { Button } from "@/components/ui/button";
-import { Bell, Bookmark, Home, Mail } from "lucide-react";
+import { Bell, Bookmark, Home, Mail, User, Users, UserX } from "lucide-react";
 import Link from "next/link";
 import NotificationsButton from "./NotificationsButton";
 import { validateRequest } from "@/auth";
 import prisma from "@/lib/prisma";
 import MessagesButton from "./MessagesButton";
 import streamServerClient from "@/lib/stream";
+import FollowSuggestions from "./follow-suggestions/FollowSuggestions";
 
 interface MenuBarProps {
   classname?: string;
@@ -51,6 +52,17 @@ const MenuBar = async ({ classname }: MenuBarProps) => {
         <Link href={"/bookmarks"} className="hover:text-primary">
           <Bookmark />
           <span className="hidden lg:inline">Bookmarks</span>
+        </Link>
+      </Button>
+      <Button
+        variant={"ghost"}
+        className="flex items-center justify-start gap-3 hover:text-primary"
+        title="Bookmarks"
+        asChild
+      >
+        <Link href={"/follow-suggestions"} className="hover:text-primary">
+          <Users />
+          <span className="hidden lg:inline">Find people</span>
         </Link>
       </Button>
     </div>

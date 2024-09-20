@@ -47,7 +47,7 @@ const WhoToFollow = async () => {
 
   return (
     <div className="space-y-5 rounded-2xl bg-card p-5 shadow-sm">
-      <h1 className="text-xl font-bold">Who to Follow</h1>
+      <h1 className="text-xl font-bold">Following suggestions</h1>
       {usersToFollow.map((user) => (
         <div className="flex items-center justify-between gap-3" key={user.id}>
           <UserTooltip user={user}>

@@ -1,4 +1,5 @@
 import { Prisma } from "@prisma/client";
+import { ReactNode } from "react";
 
 export const getUserDataSelect = (loggedInUserId: string) => {
   return {
@@ -72,6 +73,10 @@ export interface FollowerInfo {
   isFollowedByUser: boolean;
 }
 
+export interface FollowingInfo {
+  followingCount: number;
+  followingUsers: UserData[];
+}
 export type UserData = Prisma.UserGetPayload<{
   select: ReturnType<typeof getUserDataSelect>;
 }>;
@@ -128,4 +133,22 @@ export interface NotificationCountInfo {
 }
 export interface MessageCountInfo {
   unreadCount: number;
+}
+export interface FollowSuggestion {
+  _count: any;
+  followers: any;
+  username: ReactNode;
+  id: string;
+  name: string;
+  profileImageUrl?: string; // Optional field if you have profile images
+}
+
+export interface FollowSuggestionsPage {
+  suggestions: FollowSuggestion[];
+  nextCursor: string | null; // Used for pagination
+}
+// types.ts (or wherever your types are defined)
+export interface FollowSuggestionsProps {
+  refetchSuggestions(): unknown;
+  refetch: boolean;
 }

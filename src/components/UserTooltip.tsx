@@ -20,6 +20,7 @@ import UserAvatar from "./UserAvatar";
 import FollowButton from "./FollowButton";
 import Linkify from "./Linkify";
 import FollowersCount from "./FollowersCount";
+import FollowingCount from "./FollowingCount";
 
 const UserTooltip = ({ user, children }: UserTooltipProps) => {
   const { user: loggedinUser } = useSession();
