@@ -94,6 +94,7 @@ const getTrendingTopics = unstable_cache(
 
     return result.map((row) => ({
       hashtag: row.hashtag,
+
       count: Number(row.count),
     }));
   },

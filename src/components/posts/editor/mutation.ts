@@ -32,17 +32,20 @@ export const useSubmitPostMutation = () => {
         queryFilter,
         (oldData) => {
           const firstPage = oldData?.pages[0];
-          if (firstPage)
+          if (firstPage) {
+            const updatedPages = [
+              {
+                posts: [newPost, ...firstPage.posts],
+                nextCursor: firstPage.nextCursor,
+              },
+              ...oldData.pages.slice(1),
+            ];
             return {
               pageParams: oldData.pageParams,
-              pages: [
-                {
-                  posts: [newPost, ...firstPage.posts],
-                  nextCursor: firstPage.nextCursor,
-                },
-                ...oldData.pages.slice(1),
-              ],
+              pages: updatedPages,
             };
+          }
+          return oldData;
         },
       );
       queryClient.invalidateQueries({

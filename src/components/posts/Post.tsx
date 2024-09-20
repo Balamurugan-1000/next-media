@@ -22,7 +22,6 @@ import Comments from "../comments/Comments";
 
 const Post = ({ post }: PostProps) => {
   const { user } = useSession();
-  console.log(post);
 
   const [showComments, setShowComments] = useState(false);
   return (

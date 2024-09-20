@@ -34,7 +34,6 @@ export const GET = async (
 
     if (!post)
       return Response.json({ ereor: "Internal server error" }, { status: 500 });
-    console.log(post);
     const data: LikeInfo = {
       likes: post._count.likes,
       isLikedByUser: !!post.likes.length,

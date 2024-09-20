@@ -142,4 +142,5 @@ enum NotificationType {
   COMMENT
   FOLLOW
   MENTION
+  MENTION_IN_COMMENTS
 }

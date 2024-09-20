@@ -148,7 +148,6 @@ const AvatarInput = ({ onImageCropped, src }: AvatarInputProps) => {
       100,
       0,
       (uri) => {
-        console.log(uri);
         setImageToCrop(uri as File);
       },
       "file",

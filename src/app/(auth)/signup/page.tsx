@@ -4,6 +4,8 @@ import signUpImage from "@/assets/signup-image.jpg";
 import Image from "next/image";
 import Link from "next/link";
 import SignupForm from "./SignupForm";
+import GoogleSignInButton from "../login/GoogleSignInButton";
+import GoogleSignUpButton from "./GoogleSignInButton";
 export const metadata: Metadata = {
   title: "Sign up",
 };
@@ -21,6 +23,7 @@ const page = () => {
           </div>
           <div className="space-y-5 p-2">
             <SignupForm />
+            <GoogleSignUpButton />
             <Link href={"/login"} className="block text-center hover:underline">
               Already have an account ? Login
             </Link>

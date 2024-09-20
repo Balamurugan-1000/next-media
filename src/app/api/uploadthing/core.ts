@@ -1,5 +1,6 @@
 import { validateRequest } from "@/auth";
 import prisma from "@/lib/prisma";
+import streamServerClient from "@/lib/stream";
 import { createUploadthing, FileRouter } from "uploadthing/next";
 import { UTApi } from "uploadthing/server";
 
@@ -17,28 +18,50 @@ export const fileRouter = {
     })
     .onUploadComplete(async ({ metadata, file }) => {
       const oldAvatarUrl = metadata.user.avatarUrl;
+
       if (oldAvatarUrl) {
         const Key = oldAvatarUrl.split(
           `/a/${process.env.NEXT_PUBLIC_UPLOADTHING_APP_ID}/`,
         )[1];
-
         await new UTApi().deleteFiles(Key);
       }
+
       const newAvatarUrl = file.url.replace(
         "/f/",
         `/a/${process.env.NEXT_PUBLIC_UPLOADTHING_APP_ID}/`,
       );
-      await prisma.user.update({
-        where: {
-          id: metadata.user.id,
-        },
-        data: {
-          avatarUrl: newAvatarUrl,
-        },
-      });
+      try {
+        await Promise.all([
+          prisma.user.update({
+            where: {
+              id: metadata.user.id,
+            },
+            data: {
+              avatarUrl: newAvatarUrl,
+            },
+          }),
+          streamServerClient.partialUpdateUser({
+            id: metadata.user.id,
+            set: {
+              image: newAvatarUrl,
+            },
+          }),
+        ]);
+      } catch (error) {
+        console.error("Error updating user avatar:", error);
+      }
+
+      // Explicitly update avatarUrl for Google login users
+      // Explicitly update avatarUrl for Google login users
+      if (metadata.user.googleId) {
+        await prisma.user.update({
+          where: { id: metadata.user.id },
+          data: { avatarUrl: newAvatarUrl },
+        });
+      }
+
       return { avatarUrl: newAvatarUrl };
     }),
-
   attachments: f({
     image: { maxFileSize: "4MB", maxFileCount: 5 },
     video: { maxFileSize: "64MB", maxFileCount: 5 },

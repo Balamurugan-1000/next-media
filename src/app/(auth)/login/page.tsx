@@ -4,6 +4,7 @@ import Image from "next/image";
 import React from "react";
 import Link from "next/link";
 import LoginForm from "./LoginForm";
+import GoogleSignInButton from "./GoogleSignInButton";
 export const metadata: Metadata = {
   title: "Login Page",
 };
@@ -21,6 +22,7 @@ const LoginPage = () => {
           <div className="space-y-5 p-2">
             <LoginForm />
 
+            <GoogleSignInButton />
             <Link
               href={"/signup"}
               className="block text-center hover:underline"
