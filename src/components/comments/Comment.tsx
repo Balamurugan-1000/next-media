@@ -14,7 +14,7 @@ interface CommentProps {
 const Comment = ({ comment }: CommentProps) => {
   const { user } = useSession();
   return (
-    <div className="group/comment flex justify-between gap-3 py-3">
+    <div className="group/comment flex justify-start gap-5 py-3">
       <span className="hidden sm:inline">
         <UserTooltip user={comment.user}>
           <Link href={`/users/${comment.user.username}`}>
@@ -23,7 +23,7 @@ const Comment = ({ comment }: CommentProps) => {
         </UserTooltip>
       </span>
       <div className="">
-        <div className="flex items-center gap-2 text-sm">
+        <div className="flex flex-nowrap items-center gap-2 text-sm">
           <UserTooltip user={comment.user}>
             <Link href={`/users/${comment.user.username}`}>
               <span className="font-medium hover:underline">
