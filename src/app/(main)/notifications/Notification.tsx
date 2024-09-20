@@ -25,7 +25,7 @@ const Notification = ({ notification }: NotificationProps) => {
       href: `/posts/${notification.postId}`,
     },
     LIKE: {
-      message: `${notification.issuer.displayName} COMMENTd your post`,
+      message: `${notification.issuer.displayName} Liked your post`,
       icon: <Heart className="size-7 fill-red-500 text-red-500" />,
       href: `/posts/${notification.postId}`,
     },
