@@ -106,6 +106,7 @@ async function UserInfoSidebar({ user }: UserInfoSidebarProps) {
               ({ followerId }) => followerId === loggedInUser.id,
             ),
             followersUsers: [user],
+            userId: loggedInUser.id,
           }}
           userId={user.id}
         />
