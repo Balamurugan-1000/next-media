@@ -22,6 +22,7 @@ const UserCard = ({ user }: UserCardProps) => {
       (follower) => follower.followerId === loggedInUser.id,
     ),
     followersUsers: [],
+    userId: user.id,
   };
 
   return (

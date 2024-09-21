@@ -30,6 +30,8 @@ const UserTooltip = ({ user, children }: UserTooltipProps) => {
     isFollowedByUser: !!user.followers.some(
       ({ followerId }) => followerId === loggedinUser.id,
     ),
+    userId: user.id,
+    followersUsers: [],
   };
   return (
     <TooltipProvider>
@@ -58,7 +60,11 @@ const UserTooltip = ({ user, children }: UserTooltipProps) => {
                 <div className="line-clamp-4">{user.bio}</div>
               </Linkify>
             )}
-            <FollowersCount initialState={followerState} userId={user.id} />
+            <FollowersCount
+              initialState={followerState}
+              userId={user.id}
+              loggedInUserId={loggedinUser.id}
+            />
           </div>
         </TooltipContent>
       </Tooltip>
