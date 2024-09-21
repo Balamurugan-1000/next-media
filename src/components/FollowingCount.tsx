@@ -1,34 +1,41 @@
 "use client";
 
-import useFollowerInfo from "@/hooks/useFollowerInfo";
 import useFollowingInfo from "@/hooks/useFollowingInfo";
-import { FollowerInfo } from "@/lib/types";
 import { formatNumber } from "@/lib/utils";
 import Link from "next/link";
 
-interface FollowerCountProps {
+const FollowingCount = ({
+  loggedInUserId,
+  userId,
+}: {
+  loggedInUserId: string;
   userId: string;
-  initialState: FollowerInfo;
-}
-
-interface FollowingCountProps {
-  params: {
-    username: string;
-  };
-}
-const FollowersCount = () => {
+}) => {
   let { data } = useFollowingInfo();
 
-  return (
-    <Link href="/following">
-      <span>
-        Followers:{"  "}{" "}
-        <span className="font-semibold">
-          {formatNumber(data?.followingCount || 0)}
+  {
+    if (loggedInUserId && loggedInUserId == userId) {
+      return (
+        <Link href="/following">
+          <span>
+            Following:{"  "}{" "}
+            <span className="font-semibold">
+              {formatNumber(data?.followingCount || 0)}
+            </span>
+          </span>
+        </Link>
+      );
+    } else {
+      return (
+        <span>
+          Following:{"  "}{" "}
+          <span className="font-semibold">
+            {formatNumber(data?.followingCount || 0)}
+          </span>
         </span>
-      </span>
-    </Link>
-  );
+      );
+    }
+  }
 };
 
-export default FollowersCount;
+export default FollowingCount;

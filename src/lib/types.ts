@@ -69,13 +69,19 @@ export interface PostsPage {
 }
 
 export interface FollowerInfo {
+  userId: string;
   followers: number;
   isFollowedByUser: boolean;
+  followersUsers: UserData[];
 }
 
 export interface FollowingInfo {
   followingCount: number;
   followingUsers: UserData[];
+}
+export interface FollowingInfo {
+  followersCount: number;
+  followers: UserData[];
 }
 export type UserData = Prisma.UserGetPayload<{
   select: ReturnType<typeof getUserDataSelect>;

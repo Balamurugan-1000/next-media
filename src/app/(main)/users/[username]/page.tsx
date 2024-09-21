@@ -83,9 +83,11 @@ interface UserProfileProps {
 const UserProfile = async ({ loggedInUserId, user }: UserProfileProps) => {
   const followerInfo: FollowerInfo = {
     followers: user._count.followers,
+    followersUsers: [],
     isFollowedByUser: user.followers.some(
       ({ followerId }) => followerId === loggedInUserId,
     ),
+    userId: "",
   };
 
   return (
@@ -111,8 +113,17 @@ const UserProfile = async ({ loggedInUserId, user }: UserProfileProps) => {
                 {formatNumber(user._count.posts)}
               </span>
             </span>
-            <FollowersCount initialState={followerInfo} userId={user.id} />
-            {loggedInUserId === user.id && <FollowingCount />}
+            <FollowersCount
+              loggedInUserId={loggedInUserId}
+              initialState={followerInfo}
+              userId={user.id}
+            />
+            {user.id === loggedInUserId && (
+              <FollowingCount
+                loggedInUserId={loggedInUserId}
+                userId={user.id}
+              />
+            )}
           </div>
         </div>
         {user.id === loggedInUserId ? (

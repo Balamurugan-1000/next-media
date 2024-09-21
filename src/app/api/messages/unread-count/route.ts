@@ -1,7 +1,8 @@
 import { validateRequest } from "@/auth";
 import streamServerClient from "@/lib/stream";
+import { MessageCountInfo } from "@/lib/types";
 
-export const GET = async () => {
+export async function GET() {
   try {
     const { user } = await validateRequest();
 
@@ -9,17 +10,17 @@ export const GET = async () => {
       return Response.json({ error: "Unauthorized" }, { status: 401 });
     }
 
-    // Query the channels where the user has unread messages
-    const channels = await streamServerClient.queryChannels({
-      members: { $in: [user.id] }, // Filter to channels where the user is a member
-      has_unread: true, // Filter for channels that have unread messages
-    });
+    const { total_unread_count } = await streamServerClient.getUnreadCount(
+      user.id,
+    );
 
-    const totalUnreadChannels = channels.length; // Total number of channels with unread messages
+    const data: MessageCountInfo = {
+      unreadCount: total_unread_count,
+    };
 
-    return Response.json({ unreadChannels: totalUnreadChannels });
+    return Response.json(data);
   } catch (error) {
     console.error(error);
-    return Response.json({ error: "Internal Server Error" }, { status: 500 });
+    return Response.json({ error: "Internal server error" }, { status: 500 });
   }
-};
+}

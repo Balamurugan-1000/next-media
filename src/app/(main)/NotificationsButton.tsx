@@ -10,24 +10,28 @@ import Link from "next/link";
 interface NotificationsButtonProps {
   initialState: NotificationCountInfo;
 }
-const NotificationsButton = ({ initialState }: NotificationsButtonProps) => {
+
+export default function NotificationsButton({
+  initialState,
+}: NotificationsButtonProps) {
   const { data } = useQuery({
     queryKey: ["unread-notification-count"],
     queryFn: () =>
       kyInstance
-        .get(`/api/notifications/unread-count`)
+        .get("/api/notifications/unread-count")
         .json<NotificationCountInfo>(),
     initialData: initialState,
-    refetchInterval: 10 * 1000,
+    refetchInterval: 60 * 1000,
   });
+
   return (
     <Button
-      variant={"ghost"}
-      className="flex items-center justify-start gap-3 hover:text-primary"
+      variant="ghost"
+      className="flex items-center justify-start gap-3 hover:text-black"
       title="Notifications"
       asChild
     >
-      <Link href={"/notifications"}>
+      <Link href="/notifications">
         <div className="relative">
           <Bell />
           {!!data.unreadCount && (
@@ -40,6 +44,4 @@ const NotificationsButton = ({ initialState }: NotificationsButtonProps) => {
       </Link>
     </Button>
   );
-};
-
-export default NotificationsButton;
+}

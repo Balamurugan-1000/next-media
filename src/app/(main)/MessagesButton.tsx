@@ -13,9 +13,11 @@ interface MessageButtonProps {
 
 const MessagesButton = ({ initialState }: MessageButtonProps) => {
   const { data } = useQuery({
-    queryKey: ["unread-message-count"],
+    queryKey: ["unread-notification-count"],
     queryFn: () =>
-      kyInstance.get(`/api/messages/unread-count`).json<MessageCountInfo>(),
+      kyInstance
+        .get(`/api/notifications/unread-count`)
+        .json<MessageCountInfo>(),
     initialData: initialState,
     refetchInterval: 10 * 1000,
   });

@@ -1,6 +1,6 @@
 import { validateRequest } from "@/auth";
 import prisma from "@/lib/prisma";
-import { FollowerInfo } from "@/lib/types";
+import { FollowerInfo, getUserDataSelect } from "@/lib/types";
 
 export const GET = async (
   req: Request,
@@ -21,6 +21,9 @@ export const GET = async (
           },
           select: {
             followerId: true,
+            follower: {
+              select: getUserDataSelect(loggedInUser.id),
+            },
           },
         },
         _count: {
@@ -37,6 +40,8 @@ export const GET = async (
     const data: FollowerInfo = {
       followers: user._count.followers,
       isFollowedByUser: !!user.followers.length,
+      followersUsers: user.followers.map(({ follower }) => follower),
+      userId: "",
     };
     return Response.json(data);
   } catch (error) {

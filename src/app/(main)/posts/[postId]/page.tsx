@@ -105,6 +105,7 @@ async function UserInfoSidebar({ user }: UserInfoSidebarProps) {
             isFollowedByUser: user.followers.some(
               ({ followerId }) => followerId === loggedInUser.id,
             ),
+            followersUsers: [user],
           }}
           userId={user.id}
         />

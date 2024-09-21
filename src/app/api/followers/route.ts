@@ -1,6 +1,7 @@
 import { validateRequest } from "@/auth";
 import prisma from "@/lib/prisma";
 import { getUserDataSelect } from "@/lib/types";
+import { get } from "http";
 
 export const GET = async (req: Request) => {
   try {
@@ -10,22 +11,25 @@ export const GET = async (req: Request) => {
       return Response.json({ error: "Unauthorized" }, { status: 401 });
     }
 
-    const followingData = await prisma.follow.findMany({
-      where: { followerId: loggedInUser.id },
+    const followersData = await prisma.follow.findMany({
+      where: {
+        followingId: loggedInUser.id,
+      },
       select: {
-        following: {
+        follower: {
           select: getUserDataSelect(loggedInUser.id),
         },
       },
     });
 
-    let followingUsers = followingData.map((follow) => follow.following);
-    followingUsers = followingUsers.filter(
+    let followersUsers = followersData.map((follow) => follow.follower);
+    const followersCount = followersUsers.length - 1;
+    followersUsers = followersUsers.filter(
       (user) => user.id !== loggedInUser.id,
     );
-    const followingCount = followingUsers.length;
+    console.log(followersUsers);
 
-    return Response.json({ followingCount, followingUsers });
+    return Response.json({ followersCount, followersUsers });
   } catch (error) {
     console.error(error);
     return Response.json({ error: "Internal server error" }, { status: 500 });

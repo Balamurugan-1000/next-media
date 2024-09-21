@@ -4,6 +4,7 @@ import { FollowerInfo, UserData } from "@/lib/types";
 import FollowButton from "./FollowButton";
 import { useSession } from "@/app/(main)/SessionProvider";
 import UserTooltip from "./UserTooltip";
+import Link from "next/link";
 
 interface UserCardProps {
   user: UserData;
@@ -20,11 +21,12 @@ const UserCard = ({ user }: UserCardProps) => {
     isFollowedByUser: user.followers.some(
       (follower) => follower.followerId === loggedInUser.id,
     ),
+    followersUsers: [],
   };
 
   return (
-    <div className="flex w-full flex-col items-center justify-between rounded-md border border-primary-foreground bg-card p-4 shadow-md transition-all duration-300 hover:shadow-lg hover:shadow-card-foreground sm:flex-row">
-      <div className="mb-4 flex items-center space-x-4 sm:mb-0">
+    <div className="flex w-full max-w-full flex-col items-center justify-between gap-4 rounded-lg border border-card-foreground bg-card p-4 shadow-md transition-all duration-300 hover:shadow-lg hover:shadow-card-foreground sm:flex-row sm:items-center">
+      <div className="flex w-full items-center space-x-4 sm:w-auto">
         {user.avatarUrl ? (
           <UserTooltip user={user}>
             <Image
@@ -37,18 +39,20 @@ const UserCard = ({ user }: UserCardProps) => {
           </UserTooltip>
         ) : (
           <UserTooltip user={user}>
-            <div className="flex h-12 w-12 items-center justify-center rounded-full bg-card-foreground text-lg font-semibold text-card">
+            <div className="flex h-12 w-12 items-center justify-center rounded-full bg-muted-foreground text-lg font-semibold text-card">
               {String(displayName).charAt(0).toUpperCase()}
             </div>
           </UserTooltip>
         )}
 
-        <div>
-          <UserTooltip user={user}>
-            <p className="text-lg font-bold text-muted-foreground sm:text-xl">
-              {displayName}
-            </p>
-          </UserTooltip>
+        <div className="flex flex-col">
+          <Link href={`/users/${user.username}`}>
+            <UserTooltip user={user}>
+              <p className="text-lg font-bold text-primary sm:text-xl">
+                {displayName}
+              </p>
+            </UserTooltip>
+          </Link>
           <UserTooltip user={user}>
             <p className="text-sm text-muted-foreground sm:text-base">
               @{user.username}
@@ -57,7 +61,9 @@ const UserCard = ({ user }: UserCardProps) => {
         </div>
       </div>
 
-      <FollowButton userId={user.id} initialState={followerInfo} />
+      <div className="w-full sm:w-auto">
+        <FollowButton userId={user.id} initialState={followerInfo} />
+      </div>
     </div>
   );
 };
