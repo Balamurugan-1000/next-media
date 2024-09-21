@@ -74,6 +74,8 @@ const WhoToFollow = async () => {
               isFollowedByUser: user.followers.some(
                 ({ followerId }) => followerId === user.id,
               ),
+              followersUsers: [user],
+              userId: user.id,
             }}
           />
         </div>
